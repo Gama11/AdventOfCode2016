@@ -17,6 +17,6 @@ class Tests {
 		Assert.equals(2, Day1.getDistanceToHQ("R2, R2, R2"));
 		Assert.equals(12, Day1.getDistanceToHQ("R5, L5, R5, R3"));
 
-		Assert.equals(-1, Day1.getDistanceToHQ(getData("day1")));
+		Assert.equals(250, Day1.getDistanceToHQ(getData("day1")));
 	}
 }
