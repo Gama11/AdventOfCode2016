@@ -1,5 +1,7 @@
 import utest.ITest;
 
+using Lambda;
+
 class Day1 implements ITest {
 	static function parseSequence(sequence:String):Array<Instruction> {
 		return sequence.split(", ").map(s -> {
@@ -14,7 +16,39 @@ class Day1 implements ITest {
 		});
 	}
 
+	static function getLength(x:Int, y:Int):Int {
+		return Std.int(Math.abs(x) + Math.abs(y));
+	}
+
 	public static function getDistanceToHQ(sequence:String):Int {
+		var finalX = 0;
+		var finalY = 0;
+		walk(sequence, (x, y) -> {
+			finalX = x;
+			finalY = y;
+			return true;
+		});
+		return getLength(finalX, finalY);
+	}
+
+	public static function getDistanceToFirstVisitedTwice(sequence:String):Int {
+		var finalX = 0;
+		var finalY = 0;
+		var previousLocations = [];
+		walk(sequence, function(x:Int, y:Int) {
+			finalX = x;
+			finalY = y;
+			var visitedBefore = previousLocations.exists(p -> p.x == x && p.y == y);
+			if (visitedBefore) {
+				return false;
+			}
+			previousLocations.push({x: x, y: y});
+			return true;
+		});
+		return getLength(finalX, finalY);
+	}
+
+	static function walk(sequence:String, proceed:(x:Int, y:Int) -> Bool) {
 		var instructions = parseSequence(sequence);
 		var x = 0;
 		var y = 0;
@@ -32,19 +66,23 @@ class Day1 implements ITest {
 
 			var direction = directions[directionIndex];
 			var steps = instruction.steps;
-			switch (direction) {
-				case North:
-					y -= steps;
-				case South:
-					y += steps;
-				case West:
-					x -= steps;
-				case East:
-					x += steps;
+			while (steps > 0) {
+				switch (direction) {
+					case North:
+						y--;
+					case South:
+						y++;
+					case West:
+						x--;
+					case East:
+						x++;
+				}
+				steps--;
+				if (!proceed(x, y)) {
+					return;
+				}
 			}
 		}
-
-		return Std.int(Math.abs(x) + Math.abs(y));
 	}
 }
 
