@@ -44,5 +44,8 @@ class Tests implements ITest {
 		Assert.isTrue(Day4.checkRoom("not-a-real-room-404[oarel]").match(Real(_)));
 		Assert.isFalse(Day4.checkRoom("totally-real-room-200[decoy]").match(Real(_)));
 		Assert.equals(173787, Day4.sumRealRoomIDs(getData("day4")));
+
+		Assert.equals("very encrypted name", Day4.decrypt("qzmt-zixmtkozy-ivhz-343").name);
+		Assert.equals(0, Day4.findIDforName(getData("day4"), "northpole object storage"));
 	}
 }

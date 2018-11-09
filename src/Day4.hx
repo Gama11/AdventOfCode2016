@@ -1,6 +1,6 @@
 class Day4 {
-	public static function parse(input:String):Room {
-		var regex = ~/([a-z\-]+)([0-9]+)\[([a-z]+)\]/;
+	static function parse(input:String):Room {
+		var regex = ~/([a-z\-]+)-([0-9]+)(?:\[([a-z]+)\])?/;
 		if (!regex.match(input)) {
 			throw "regex failure: " + input;
 		}
@@ -52,6 +52,28 @@ class Day4 {
 			case Real(id): id;
 			case Decoy: 0;
 		}).fold((a, b) -> a + b, 0);
+	}
+
+	public static function decrypt(input:String):Room {
+		var room = parse(input);
+		var name = "";
+		for (i in 0...room.name.length) {
+			var letter = room.name.charAt(i);
+			if (letter != "-") {
+				final asciiOffset = 97;
+				var code = letter.charCodeAt(0) - asciiOffset;
+				code = (code + room.id) % 26;
+				name += String.fromCharCode(code + asciiOffset);
+			} else {
+				name += " ";
+			}
+		}
+		room.name = name;
+		return room;
+	}
+
+	public static function findIDforName(input:String, name:String):Int {
+		return input.split("\n").map(Day4.decrypt).find(room -> room.name == name).id;
 	}
 }
 
