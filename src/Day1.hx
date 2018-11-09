@@ -1,8 +1,6 @@
-import utest.ITest;
-
 using Lambda;
 
-class Day1 implements ITest {
+class Day1 {
 	static function parseSequence(sequence:String):Array<Instruction> {
 		return sequence.split(", ").map(s -> {
 			var direction = s.charAt(0);

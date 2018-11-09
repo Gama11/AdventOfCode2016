@@ -1,9 +1,10 @@
+import utest.ITest;
 import utest.Assert;
 import utest.UTest;
 
 using StringTools;
 
-class Tests {
+class Tests implements ITest {
 	static function main() {
 		UTest.run([new Tests()]);
 	}
@@ -25,7 +26,10 @@ class Tests {
 	}
 
 	function testDay2() {
-		Assert.equals("1985", Day2.getCode(getData("day2-0")));
-		Assert.equals("18843", Day2.getCode(getData("day2-1")));
+		Assert.equals("1985", Day2.getTestCode(getData("day2-0")));
+		Assert.equals("18843", Day2.getTestCode(getData("day2-1")));
+
+		Assert.equals("5DB3", Day2.getActualCode(getData("day2-0")));
+		Assert.equals("67BB9", Day2.getActualCode(getData("day2-1")));
 	}
 }
