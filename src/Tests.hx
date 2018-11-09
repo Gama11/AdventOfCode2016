@@ -37,4 +37,12 @@ class Tests implements ITest {
 
 		Assert.equals(1836, Day3.countPossibleTrianglesByColumn(getData("day3")));
 	}
+
+	function testDay4() {
+		Assert.isTrue(Day4.checkRoom("aaaaa-bbb-z-y-x-123[abxyz]").match(Real(_)));
+		Assert.isTrue(Day4.checkRoom("a-b-c-d-e-f-g-h-987[abcde]").match(Real(_)));
+		Assert.isTrue(Day4.checkRoom("not-a-real-room-404[oarel]").match(Real(_)));
+		Assert.isFalse(Day4.checkRoom("totally-real-room-200[decoy]").match(Real(_)));
+		Assert.equals(0, Day4.sumRealRoomIDs(getData("day4")));
+	}
 }
