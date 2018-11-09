@@ -13,7 +13,26 @@ class Day3 {
 	}
 
 	public static function countPossibleTrianglesByColumn(input:String):Int {
-		return 0;
+		var count = 0;
+		var grid = parse(input);
+		var i = 0;
+		while (i < grid.length) {
+			var row1 = grid[i];
+			var row2 = grid[i + 1];
+			var row3 = grid[i + 2];
+
+			function countColumn(i:Int) {
+				if (isPossibleTriangle(row1[i], row2[i], row3[i])) {
+					count++;
+				}
+			}
+			countColumn(0);
+			countColumn(1);
+			countColumn(2);
+
+			i += 3;
+		}
+		return count;
 	}
 
 	static function parse(input:String):Array<Array<Null<Int>>> {

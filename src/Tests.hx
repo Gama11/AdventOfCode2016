@@ -35,6 +35,6 @@ class Tests implements ITest {
 		Assert.isFalse(Day3.isPossibleTriangle(5, 10, 25));
 		Assert.equals(983, Day3.countPossibleTrianglesByRow(getData("day3")));
 
-		Assert.equals(-1, Day3.countPossibleTrianglesByColumn(getData("day3")));
+		Assert.equals(1836, Day3.countPossibleTrianglesByColumn(getData("day3")));
 	}
 }
