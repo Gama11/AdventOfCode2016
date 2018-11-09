@@ -43,6 +43,6 @@ class Tests implements ITest {
 		Assert.isTrue(Day4.checkRoom("a-b-c-d-e-f-g-h-987[abcde]").match(Real(_)));
 		Assert.isTrue(Day4.checkRoom("not-a-real-room-404[oarel]").match(Real(_)));
 		Assert.isFalse(Day4.checkRoom("totally-real-room-200[decoy]").match(Real(_)));
-		Assert.equals(0, Day4.sumRealRoomIDs(getData("day4")));
+		Assert.equals(173787, Day4.sumRealRoomIDs(getData("day4")));
 	}
 }

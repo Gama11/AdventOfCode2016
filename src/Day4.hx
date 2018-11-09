@@ -1,17 +1,22 @@
 class Day4 {
-	public static function checkRoom(room:String):Room {
-		room = room.replace("-", "");
-		var regex = ~/([a-z]+)([0-9]+)\[([a-z]+)\]/;
-		if (!regex.match(room)) {
-			throw "regex failure: " + room;
+	public static function parse(input:String):Room {
+		var regex = ~/([a-z\-]+)([0-9]+)\[([a-z]+)\]/;
+		if (!regex.match(input)) {
+			throw "regex failure: " + input;
 		}
-		var name = regex.matched(1);
-		var id = Std.parseInt(regex.matched(2));
-		var checksum = regex.matched(3);
-
+		return {
+			name: regex.matched(1),
+			id: Std.parseInt(regex.matched(2)),
+			checksum: regex.matched(3)
+		};
+	}
+	
+	public static function checkRoom(input:String):RoomStatus {
+		var room = parse(input);
+		var name = room.name.replace("-", "");
 		var actualChecksum = sortLettersByCount(countLetters(name)).join("").substr(0, 5);
-		if (checksum == actualChecksum) {
-			return Real(id);
+		if (room.checksum == actualChecksum) {
+			return Real(room.id);
 		}
 		return Decoy;
 	}
@@ -50,7 +55,13 @@ class Day4 {
 	}
 }
 
-enum Room {
+typedef Room = {
+	var name:String;
+	var id:Int;
+	var checksum:String;
+}
+
+enum RoomStatus {
 	Real(id:Int);
 	Decoy;
 }
