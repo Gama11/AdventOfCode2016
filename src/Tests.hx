@@ -32,7 +32,9 @@ class Tests implements ITest {
 	}
 
 	function testDay3() {
-		Assert.isFalse(Day3.isPossibleTriangle("5 10 25"));
-		Assert.equals(-1, Day3.countPossibleTriangles(getData("day3")));
+		Assert.isFalse(Day3.isPossibleTriangle(5, 10, 25));
+		Assert.equals(983, Day3.countPossibleTrianglesByRow(getData("day3")));
+
+		Assert.equals(-1, Day3.countPossibleTrianglesByColumn(getData("day3")));
 	}
 }
