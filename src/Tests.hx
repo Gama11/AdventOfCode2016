@@ -2,8 +2,6 @@ import utest.ITest;
 import utest.Assert;
 import utest.UTest;
 
-using StringTools;
-
 class Tests implements ITest {
 	static function main() {
 		UTest.run([new Tests()]);
@@ -31,5 +29,10 @@ class Tests implements ITest {
 
 		Assert.equals("5DB3", Day2.getActualCode(getData("day2-0")));
 		Assert.equals("67BB9", Day2.getActualCode(getData("day2-1")));
+	}
+
+	function testDay3() {
+		Assert.isFalse(Day3.isPossibleTriangle("5 10 25"));
+		Assert.equals(-1, Day3.countPossibleTriangles(getData("day3")));
 	}
 }
