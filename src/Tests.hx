@@ -1,6 +1,8 @@
 import utest.Assert;
 import utest.UTest;
 
+using StringTools;
+
 class Tests {
 	static function main() {
 		UTest.run([new Tests()]);
@@ -9,7 +11,7 @@ class Tests {
 	function new() {}
 
 	function getData(name:String):String {
-		return sys.io.File.getContent('data/$name.txt');
+		return sys.io.File.getContent('data/$name.txt').replace("\r", "");
 	}
 
 	function testDay1() {
@@ -20,5 +22,10 @@ class Tests {
 
 		Assert.equals(4, Day1.getDistanceToFirstVisitedTwice("R8, R4, R4, R8"));
 		Assert.equals(151, Day1.getDistanceToFirstVisitedTwice(getData("day1")));
+	}
+
+	function testDay2() {
+		Assert.equals("1985", Day2.getCode(getData("day2-0")));
+		Assert.equals("18843", Day2.getCode(getData("day2-1")));
 	}
 }
