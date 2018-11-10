@@ -59,7 +59,10 @@ class Tests implements ITest {
 	}
 
 	function testDay6() {
-		Assert.equals("easter", Day6.getErrorCorrectedMessage(getData("day6-0")));
-		Assert.equals("qoclwvah", Day6.getErrorCorrectedMessage(getData("day6-1")));
+		Assert.equals("easter", Day6.getErrorCorrectedMessage(getData("day6-0"), MostCommon));
+		Assert.equals("qoclwvah", Day6.getErrorCorrectedMessage(getData("day6-1"), MostCommon));
+
+		Assert.equals("advent", Day6.getErrorCorrectedMessage(getData("day6-0"), LeastCommon));
+		Assert.equals("ryrgviuv", Day6.getErrorCorrectedMessage(getData("day6-1"), LeastCommon));
 	}
 }
