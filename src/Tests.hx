@@ -49,11 +49,17 @@ class Tests implements ITest {
 		Assert.equals(548, Day4.findIDforName(getData("day4"), "northpole object storage"));
 	}
 
+	@Ignored
 	function testDay5() {
 		Assert.equals("18f47a30", Day5.findPassword("abc"));
 		Assert.equals("f77a0e6e", Day5.findPassword("cxdnnyjw"));
 
 		Assert.equals("05ace8e3", Day5.findPassword2("abc"));
 		Assert.equals("999828ec", Day5.findPassword2("cxdnnyjw"));
+	}
+
+	function testDay6() {
+		Assert.equals("easter", Day6.getErrorCorrectedMessage(getData("day6-0")));
+		Assert.equals("qoclwvah", Day6.getErrorCorrectedMessage(getData("day6-1")));
 	}
 }
