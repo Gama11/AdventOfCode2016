@@ -46,6 +46,11 @@ class Tests implements ITest {
 		Assert.equals(173787, Day4.sumRealRoomIDs(getData("day4")));
 
 		Assert.equals("very encrypted name", Day4.decrypt("qzmt-zixmtkozy-ivhz-343").name);
-		Assert.equals(0, Day4.findIDforName(getData("day4"), "northpole object storage"));
+		Assert.equals(548, Day4.findIDforName(getData("day4"), "northpole object storage"));
+	}
+
+	function testDay5() {
+		Assert.equals("18f47a30", Day5.findPassword("abc"));
+		Assert.equals("f77a0e6e", Day5.findPassword("cxdnnyjw"));
 	}
 }
