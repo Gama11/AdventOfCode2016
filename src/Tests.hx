@@ -52,5 +52,8 @@ class Tests implements ITest {
 	function testDay5() {
 		Assert.equals("18f47a30", Day5.findPassword("abc"));
 		Assert.equals("f77a0e6e", Day5.findPassword("cxdnnyjw"));
+
+		Assert.equals("05ace8e3", Day5.findPassword2("abc"));
+		Assert.equals("999828ec", Day5.findPassword2("cxdnnyjw"));
 	}
 }
