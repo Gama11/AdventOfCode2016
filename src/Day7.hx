@@ -1,6 +1,7 @@
 class Day7 {
-	static function matchPattern(s:String, pattern:String):Null<Map<String, String>> {
+	static function matchPattern(s:String, pattern:String):Null<Array<Map<String, String>>> {
 		var i = 0;
+		var bindingsList = null;
 		while (i + pattern.length - 1 < s.length) {
 			var valid = true;
 			var bindings = new Map<String, String>();
@@ -22,11 +23,14 @@ class Day7 {
 				}
 			}
 			if (valid) {
-				return bindings;
+				if (bindingsList == null) {
+					bindingsList = [];
+				}
+				bindingsList.push(bindings);
 			}
 			i++;
 		}
-		return null;
+		return bindingsList;
 	}
 
 	static function parseIP(ip):IP {
@@ -64,10 +68,6 @@ class Day7 {
 		return ip.outsides.exists(hasABBA) && !ip.insides.exists(hasABBA);
 	}
 
-	public static function countIPsWithTLS(ips:String):Int {
-		return ips.split("\n").filter(supportsTLS).length;
-	}
-
 	public static function supportsSSL(ip:String):Bool {
 		var ip = parseIP(ip);
 		function findBinding(list:Array<String>, pattern:String) {
@@ -79,17 +79,30 @@ class Day7 {
 			}
 			return null;
 		}
-		var outsideBindings = findBinding(ip.outsides, "aba");
-		var insideBindings = findBinding(ip.insides, "bab");
-		if (outsideBindings == null || insideBindings == null) {
+		var outsideBindingsList = findBinding(ip.outsides, "aba");
+		var insideBindingsList = findBinding(ip.insides, "bab");
+		if (outsideBindingsList == null || insideBindingsList == null) {
 			return false;
 		}
-		for (key in outsideBindings.keys()) {
-			if (outsideBindings[key] != insideBindings[key]) {
-				return false;
+		for (outsideBindings in outsideBindingsList) {
+			for (insideBindings in insideBindingsList) {
+				var valid = true;
+				for (key in outsideBindings.keys()) {
+					if (outsideBindings[key] != insideBindings[key]) {
+						valid = false;
+						break;
+					}
+				}
+				if (valid) {
+					return true;
+				}
 			}
 		}
-		return true;
+		return false;
+	}
+
+	public static function count(ips:String, supports:String->Bool):Int {
+		return ips.split("\n").filter(supports).length;
 	}
 }
 

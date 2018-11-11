@@ -71,11 +71,12 @@ class Tests implements ITest {
 		Assert.isFalse(Day7.supportsTLS("abcd[bddb]xyyx"));
 		Assert.isFalse(Day7.supportsTLS("aaaa[qwer]tyui"));
 		Assert.isTrue(Day7.supportsTLS("ioxxoj[asdfgh]zxcvbn"));
-		Assert.equals(115, Day7.countIPsWithTLS(getData("day7")));
+		Assert.equals(115, Day7.count(getData("day7"), Day7.supportsTLS));
 
 		Assert.isTrue(Day7.supportsSSL("aba[bab]xyz"));
 		Assert.isFalse(Day7.supportsSSL("xyx[xyx]xyx"));
 		Assert.isTrue(Day7.supportsSSL("aaa[kek]eke"));
 		Assert.isTrue(Day7.supportsSSL("zazbz[bzb]cdb"));
+		Assert.equals(115, Day7.count(getData("day7"), Day7.supportsSSL));
 	}
 }
