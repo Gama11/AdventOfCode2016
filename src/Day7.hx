@@ -71,13 +71,14 @@ class Day7 {
 	public static function supportsSSL(ip:String):Bool {
 		var ip = parseIP(ip);
 		function findBinding(list:Array<String>, pattern:String) {
+			var bindingList = [];
 			for (sequence in list) {
 				var bindings = matchPattern(sequence, pattern);
 				if (bindings != null) {
-					return bindings;
+					bindingList = bindingList.concat(bindings);
 				}
 			}
-			return null;
+			return bindingList;
 		}
 		var outsideBindingsList = findBinding(ip.outsides, "aba");
 		var insideBindingsList = findBinding(ip.insides, "bab");

@@ -77,6 +77,6 @@ class Tests implements ITest {
 		Assert.isFalse(Day7.supportsSSL("xyx[xyx]xyx"));
 		Assert.isTrue(Day7.supportsSSL("aaa[kek]eke"));
 		Assert.isTrue(Day7.supportsSSL("zazbz[bzb]cdb"));
-		Assert.equals(115, Day7.count(getData("day7"), Day7.supportsSSL));
+		Assert.equals(231, Day7.count(getData("day7"), Day7.supportsSSL));
 	}
 }
