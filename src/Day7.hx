@@ -1,5 +1,5 @@
 class Day7 {
-	static function hasPattern(s:String, pattern:String):Bool {
+	static function matchPattern(s:String, pattern:String):Null<Map<String, String>> {
 		var i = 0;
 		while (i + pattern.length - 1 < s.length) {
 			var valid = true;
@@ -22,17 +22,11 @@ class Day7 {
 				}
 			}
 			if (valid) {
-				return true;
+				return bindings;
 			}
 			i++;
 		}
-		return false;
-	}
-
-	public static function supportsTLS(ip:String):Bool {
-		var ip = parseIP(ip);
-		var hasABBA = hasPattern.bind(_, "abba");
-		return ip.outsides.exists(hasABBA) && !ip.insides.exists(hasABBA);
+		return null;
 	}
 
 	static function parseIP(ip):IP {
@@ -64,8 +58,38 @@ class Day7 {
 		return {insides: insides, outsides: outsides};
 	}
 
+	public static function supportsTLS(ip:String):Bool {
+		var ip = parseIP(ip);
+		var hasABBA = ip -> matchPattern(ip, "abba") != null;
+		return ip.outsides.exists(hasABBA) && !ip.insides.exists(hasABBA);
+	}
+
 	public static function countIPsWithTLS(ips:String):Int {
 		return ips.split("\n").filter(supportsTLS).length;
+	}
+
+	public static function supportsSSL(ip:String):Bool {
+		var ip = parseIP(ip);
+		function findBinding(list:Array<String>, pattern:String) {
+			for (sequence in list) {
+				var bindings = matchPattern(sequence, pattern);
+				if (bindings != null) {
+					return bindings;
+				}
+			}
+			return null;
+		}
+		var outsideBindings = findBinding(ip.outsides, "aba");
+		var insideBindings = findBinding(ip.insides, "bab");
+		if (outsideBindings == null || insideBindings == null) {
+			return false;
+		}
+		for (key in outsideBindings.keys()) {
+			if (outsideBindings[key] != insideBindings[key]) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
 
