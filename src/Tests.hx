@@ -71,6 +71,6 @@ class Tests implements ITest {
 		Assert.isFalse(Day7.supportsTLS("abcd[bddb]xyyx"));
 		Assert.isFalse(Day7.supportsTLS("aaaa[qwer]tyui"));
 		Assert.isTrue(Day7.supportsTLS("ioxxoj[asdfgh]zxcvbn"));
-		trace(Day7.countIPsWithTLS(getData("day7")));
+		Assert.equals(115, Day7.countIPsWithTLS(getData("day7")));
 	}
 }

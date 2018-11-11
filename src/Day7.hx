@@ -15,6 +15,11 @@ class Day7 {
 	}
 
 	public static function supportsTLS(ip:String):Bool {
+		var ip = parseIP(ip);
+		return ip.outsides.exists(hasABBA) && !ip.insides.exists(hasABBA);
+	}
+
+	static function parseIP(ip):IP {
 		var insides = [];
 		var outsides = [];
 		var inside = false;
@@ -40,10 +45,15 @@ class Day7 {
 		}
 		push();
 
-		return outsides.exists(hasABBA) && !insides.exists(hasABBA);
+		return {insides: insides, outsides: outsides};
 	}
 
 	public static function countIPsWithTLS(ips:String):Int {
 		return ips.split("\n").filter(supportsTLS).length;
 	}
+}
+
+typedef IP = {
+	final insides:Array<String>;
+	final outsides:Array<String>;
 }
