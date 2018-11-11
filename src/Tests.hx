@@ -65,4 +65,12 @@ class Tests implements ITest {
 		Assert.equals("advent", Day6.getErrorCorrectedMessage(getData("day6-0"), LeastCommon));
 		Assert.equals("ryrgviuv", Day6.getErrorCorrectedMessage(getData("day6-1"), LeastCommon));
 	}
+
+	function testDay7() {
+		Assert.isTrue(Day7.supportsTLS("abba[mnop]qrst"));
+		Assert.isFalse(Day7.supportsTLS("abcd[bddb]xyyx"));
+		Assert.isFalse(Day7.supportsTLS("aaaa[qwer]tyui"));
+		Assert.isTrue(Day7.supportsTLS("ioxxoj[asdfgh]zxcvbn"));
+		trace(Day7.countIPsWithTLS(getData("day7")));
+	}
 }
