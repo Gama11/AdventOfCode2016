@@ -1,12 +1,27 @@
 class Day7 {
-	static function hasABBA(s:String):Bool {
+	static function hasPattern(s:String, pattern:String):Bool {
 		var i = 0;
-		while (i + 3 < s.length) {
-			var a = s.charAt(i);
-			var b = s.charAt(i + 1);
-			var c = s.charAt(i + 2);
-			var d = s.charAt(i + 3);
-			if (a == d && b == c && a != b) {
+		while (i + pattern.length - 1 < s.length) {
+			var valid = true;
+			var bindings = new Map<String, String>();
+			for (j in 0...pattern.length) {
+				var ident = pattern.charAt(j);
+				var char = s.charAt(i + j);
+				var binding = bindings[ident];
+				if (binding == null) {
+					for (existing in bindings) {
+						if (existing == char) {
+							valid = false;
+							break;
+						}
+					}
+					bindings[ident] = char;
+				} else if (binding != char) {
+					valid = false;
+					break;
+				}
+			}
+			if (valid) {
 				return true;
 			}
 			i++;
@@ -16,6 +31,7 @@ class Day7 {
 
 	public static function supportsTLS(ip:String):Bool {
 		var ip = parseIP(ip);
+		var hasABBA = hasPattern.bind(_, "abba");
 		return ip.outsides.exists(hasABBA) && !ip.insides.exists(hasABBA);
 	}
 
