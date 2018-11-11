@@ -15,14 +15,32 @@ class Day7 {
 	}
 
 	public static function supportsTLS(ip:String):Bool {
-		var regex = ~/([a-z]+)\[([a-z]+)\]([a-z]+)/;
-		if (!regex.match(ip)) {
-			throw "no match " + ip;
+		var insides = [];
+		var outsides = [];
+		var inside = false;
+		var buffer = "";
+
+		function push() {
+			if (buffer.length > 0) {
+				(if (inside) insides else outsides).push(buffer);
+				buffer = "";
+			}
 		}
-		if (hasABBA(regex.matched(2))) {
-			return false;
+		for (i in 0...ip.length) {
+			switch (ip.charAt(i)) {
+				case '[':
+					push();
+					inside = true;
+				case ']':
+					push();
+					inside = false;
+				case c:
+					buffer += c;
+			}
 		}
-		return hasABBA(regex.matched(1)) || hasABBA(regex.matched(3));
+		push();
+
+		return outsides.exists(hasABBA) && !insides.exists(hasABBA);
 	}
 
 	public static function countIPsWithTLS(ips:String):Int {
