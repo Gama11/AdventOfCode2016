@@ -3,7 +3,7 @@ class Day8 {
 		return [for (_ in 0...height) [for (_ in 0...width) false]];
 	}
 
-	static function parseOperations(input:String):Array<Operation> {
+	public static function parseOperations(input:String):Array<Operation> {
 		var rectRegex = ~/rect ([0-9]+)x([0-9]+)/;
 		var rotateRowRegex = ~/rotate row y=([0-9]+) by ([0-9]+)/;
 		var rotateColumnRegex = ~/rotate column x=([0-9]+) by ([0-9]+)/;

@@ -89,5 +89,7 @@ class Tests implements ITest {
 		]);
 
 		Assert.equals(106, Day8.determineLitPixelCount(50, 6, getData("day8")));
+		// part 2
+		// Day8.visualize(50, 6, Day8.parseOperations(getData("day8")));
 	}
 }
