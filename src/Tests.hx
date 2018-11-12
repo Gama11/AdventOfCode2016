@@ -79,4 +79,13 @@ class Tests implements ITest {
 		Assert.isTrue(Day7.supportsSSL("zazbz[bzb]cdb"));
 		Assert.equals(231, Day7.count(getData("day7"), Day7.supportsSSL));
 	}
+
+	function testDay8() {
+		Day8.visualize(7, 3, [
+			Rect(3, 2),
+			RotateColumn(1, 1),
+			RotateRow(0, 4),
+			RotateColumn(1, 1)
+		]);
+	}
 }
