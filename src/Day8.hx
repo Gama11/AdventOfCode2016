@@ -60,6 +60,14 @@ class Day8 {
 			Sys.println(renderScreen(screen) + "\n");
 		}
 	}
+
+	public static function determineLitPixelCount(width:Int, height:Int, input:String):Int {
+		var screen = createScreen(width, height);
+		for (op in parseOperations(input)) {
+			executeOperation(screen, op);
+		}
+		return screen.flatten().filter(on -> on).length;
+	}
 }
 
 typedef Screen = Array<Array<Bool>>;

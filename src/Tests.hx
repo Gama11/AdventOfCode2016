@@ -87,5 +87,7 @@ class Tests implements ITest {
 			RotateRow(0, 4),
 			RotateColumn(1, 1)
 		]);
+
+		Assert.equals(106, Day8.determineLitPixelCount(50, 6, getData("day8")));
 	}
 }
