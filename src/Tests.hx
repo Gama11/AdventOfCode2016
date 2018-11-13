@@ -92,4 +92,14 @@ class Tests implements ITest {
 		// part 2
 		// Day8.visualize(50, 6, Day8.parseOperations(getData("day8")));
 	}
+
+	function testDay9() {
+		Assert.equals("ADVENT", Day9.decompress("ADVENT"));
+		Assert.equals("ABBBBBC", Day9.decompress("A(1x5)BC"));
+		Assert.equals("XYZXYZXYZ", Day9.decompress("(3x3)XYZ"));
+		Assert.equals("ABCBCDEFEFG", Day9.decompress("A(2x2)BCD(2x2)EFG"));
+		Assert.equals("(1x3)A", Day9.decompress("(6x1)(1x3)A"));
+		Assert.equals("X(3x3)ABC(3x3)ABCY", Day9.decompress("X(8x2)(3x3)ABCY"));
+		Assert.equals(138735, Day9.decompress(getData("day9")).length);
+	}
 }
