@@ -94,18 +94,18 @@ class Tests implements ITest {
 	}
 
 	function testDay9() {
-		Assert.equals("ADVENT", Day9.decompress("ADVENT"));
-		Assert.equals("ABBBBBC", Day9.decompress("A(1x5)BC"));
-		Assert.equals("XYZXYZXYZ", Day9.decompress("(3x3)XYZ"));
-		Assert.equals("ABCBCDEFEFG", Day9.decompress("A(2x2)BCD(2x2)EFG"));
-		Assert.equals("(1x3)A", Day9.decompress("(6x1)(1x3)A"));
-		Assert.equals("X(3x3)ABC(3x3)ABCY", Day9.decompress("X(8x2)(3x3)ABCY"));
-		Assert.equals(138735, Day9.decompress(getData("day9")).length);
+		Assert.equals("ADVENT".length, Day9.decompress("ADVENT", false));
+		Assert.equals("ABBBBBC".length, Day9.decompress("A(1x5)BC", false));
+		Assert.equals("XYZXYZXYZ".length, Day9.decompress("(3x3)XYZ", false));
+		Assert.equals("ABCBCDEFEFG".length, Day9.decompress("A(2x2)BCD(2x2)EFG", false));
+		Assert.equals("(1x3)A".length, Day9.decompress("(6x1)(1x3)A", false));
+		Assert.equals("X(3x3)ABC(3x3)ABCY".length, Day9.decompress("X(8x2)(3x3)ABCY", false));
+		Assert.equals(138735, Day9.decompress(getData("day9"), false));
 
-		Assert.equals("XYZXYZXYZ".length, Day9.getDecompressedLength("(3x3)XYZ"));
-		Assert.equals("XABCABCABCABCABCABCY".length, Day9.getDecompressedLength("X(8x2)(3x3)ABCY"));
-		Assert.equals(241920, Day9.getDecompressedLength("(27x12)(20x12)(13x14)(7x10)(1x12)A"));
-		Assert.equals(445, Day9.getDecompressedLength("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN"));
-		Assert.equals(11125026826, Day9.getDecompressedLength(getData("day9")));
+		Assert.equals("XYZXYZXYZ".length, Day9.decompress("(3x3)XYZ", true));
+		Assert.equals("XABCABCABCABCABCABCY".length, Day9.decompress("X(8x2)(3x3)ABCY", true));
+		Assert.equals(241920, Day9.decompress("(27x12)(20x12)(13x14)(7x10)(1x12)A", true));
+		Assert.equals(445, Day9.decompress("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN", true));
+		Assert.equals(11125026826, Day9.decompress(getData("day9"), true));
 	}
 }
