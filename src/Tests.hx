@@ -101,5 +101,11 @@ class Tests implements ITest {
 		Assert.equals("(1x3)A", Day9.decompress("(6x1)(1x3)A"));
 		Assert.equals("X(3x3)ABC(3x3)ABCY", Day9.decompress("X(8x2)(3x3)ABCY"));
 		Assert.equals(138735, Day9.decompress(getData("day9")).length);
+
+		Assert.equals("XYZXYZXYZ".length, Day9.getDecompressedLength("(3x3)XYZ"));
+		Assert.equals("XABCABCABCABCABCABCY".length, Day9.getDecompressedLength("X(8x2)(3x3)ABCY"));
+		Assert.equals(241920, Day9.getDecompressedLength("(27x12)(20x12)(13x14)(7x10)(1x12)A"));
+		Assert.equals(445, Day9.getDecompressedLength("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN"));
+		Assert.equals(11125026826, Day9.getDecompressedLength(getData("day9")));
 	}
 }
