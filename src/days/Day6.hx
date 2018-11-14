@@ -1,3 +1,5 @@
+package days;
+
 class Day6 {
 	public static function getErrorCorrectedMessage(messages:String, strategy:Strategy):String {
 		var frequencies = [];

@@ -1,3 +1,5 @@
+package days;
+
 class Day7 {
 	static function matchPattern(s:String, pattern:String):Null<Array<Map<String, String>>> {
 		var i = 0;

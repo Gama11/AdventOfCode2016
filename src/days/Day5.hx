@@ -1,3 +1,5 @@
+package days;
+
 import haxe.crypto.Md5;
 
 class Day5 {

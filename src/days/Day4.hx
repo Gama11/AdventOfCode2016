@@ -1,3 +1,5 @@
+package days;
+
 class Day4 {
 	static function parse(input:String):Room {
 		var regex = ~/([a-z\-]+)-([0-9]+)(?:\[([a-z]+)\])?/;

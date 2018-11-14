@@ -1,3 +1,5 @@
+package days;
+
 using Lambda;
 
 class Day1 {

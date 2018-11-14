@@ -1,3 +1,5 @@
+package days;
+
 class Day8 {
 	static function createScreen(width:Int, height:Int):Screen {
 		return [for (_ in 0...height) [for (_ in 0...width) false]];

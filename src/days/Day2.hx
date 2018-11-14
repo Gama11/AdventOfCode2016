@@ -1,3 +1,5 @@
+package days;
+
 class Day2 {
 	public static function getTestCode(instructions:String):String {
 		var keypad = [

@@ -1,3 +1,5 @@
+package days;
+
 class Day3 {
 	public static function isPossibleTriangle(a:Int, b:Int, c:Int):Bool {
 		var sides = [a, b, c];
