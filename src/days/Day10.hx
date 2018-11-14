@@ -36,18 +36,19 @@ class Day10 {
 		};
 	}
 
-	public static function simulate(instructions:String):Null<Int> {
+	public static function simulate(instructions:String):Result {
 		var factory = buildFactory(instructions);
 		for (input in factory.inputs) {
 			factory.bots[input.bot].give(input.value);
 		}
 
+		var part1:Int = 0;
 		var anyProgress;
 		do {
 			anyProgress = false;
 			for (id => bot in factory.bots) {
 				if (bot.lowValue == 17 && bot.highValue == 61) {
-					return id;
+					part1 = id;
 				}
 				if (bot.process(factory)) {
 					anyProgress = true;
@@ -55,8 +56,16 @@ class Day10 {
 			}
 		} while (anyProgress);
 		
-		return null;
+		return {
+			part1: part1,
+			part2: factory.outputs[0] * factory.outputs[1] * factory.outputs[2]
+		};
 	}
+}
+
+typedef Result = {
+	part1:Int,
+	part2:Int
 }
 
 enum Delivery {

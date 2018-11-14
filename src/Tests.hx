@@ -111,6 +111,8 @@ class Tests implements ITest {
 	}
 
 	function testDay10() {
-		Assert.equals(113, Day10.simulate(getData("day10")));
+		var result = Day10.simulate(getData("day10"));
+		Assert.equals(113, result.part1);
+		Assert.equals(12803, result.part2);
 	}
 }
