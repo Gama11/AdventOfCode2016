@@ -8,7 +8,7 @@ class Day4 {
 		}
 		return {
 			name: regex.matched(1),
-			id: Std.parseInt(regex.matched(2)),
+			id: regex.matchedInt(2),
 			checksum: regex.matched(3)
 		};
 	}

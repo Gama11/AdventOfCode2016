@@ -12,16 +12,16 @@ class Day8 {
 		return input.split("\n").map(operation -> {
 			return if (rectRegex.match(operation)) {
 				Rect(
-					Std.parseInt(rectRegex.matched(1)), 
-					Std.parseInt(rectRegex.matched(2)));
+					rectRegex.matchedInt(1), 
+					rectRegex.matchedInt(2));
 			} else if (rotateRowRegex.match(operation)) {
 				RotateRow(
-					Std.parseInt(rotateRowRegex.matched(1)),
-					Std.parseInt(rotateRowRegex.matched(2)));
+					rotateRowRegex.matchedInt(1),
+					rotateRowRegex.matchedInt(2));
 			} else if (rotateColumnRegex.match(operation)) {
 				RotateColumn(
-					Std.parseInt(rotateColumnRegex.matched(1)),
-					Std.parseInt(rotateColumnRegex.matched(2)));
+					rotateColumnRegex.matchedInt(1),
+					rotateColumnRegex.matchedInt(2));
 			} else {
 				throw 'invalid operation $operation';
 			}

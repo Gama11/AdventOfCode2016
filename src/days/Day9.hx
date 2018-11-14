@@ -15,8 +15,8 @@ class Day9 {
 				var instruction = regex.matched(0);
 				i += instruction.length;
 
-				var length = Std.parseInt(regex.matched(1));
-				var amount = Std.parseInt(regex.matched(2));
+				var length = regex.matchedInt(1);
+				var amount = regex.matchedInt(2);
 				var section = input.substr(i, length);
 
 				result += amount * if (recurse) {

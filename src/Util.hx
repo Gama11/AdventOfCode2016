@@ -4,3 +4,9 @@ class Util {
 		return r < 0 ? r + b : r;
 	}
 }
+
+class ERegUtil {
+	public static function matchedInt(reg:EReg, n:Int):Null<Int> {
+		return Std.parseInt(reg.matched(n));
+	}
+}

@@ -14,7 +14,7 @@ class Tests implements ITest {
 		return sys.io.File.getContent('data/$name.txt').replace("\r", "");
 	}
 
-	function testDay1() {
+	function testDay01() {
 		Assert.equals(5, Day1.getDistanceToHQ("R2, L3"));
 		Assert.equals(2, Day1.getDistanceToHQ("R2, R2, R2"));
 		Assert.equals(12, Day1.getDistanceToHQ("R5, L5, R5, R3"));
@@ -24,7 +24,7 @@ class Tests implements ITest {
 		Assert.equals(151, Day1.getDistanceToFirstVisitedTwice(getData("day1")));
 	}
 
-	function testDay2() {
+	function testDay02() {
 		Assert.equals("1985", Day2.getTestCode(getData("day2-0")));
 		Assert.equals("18843", Day2.getTestCode(getData("day2-1")));
 
@@ -32,14 +32,14 @@ class Tests implements ITest {
 		Assert.equals("67BB9", Day2.getActualCode(getData("day2-1")));
 	}
 
-	function testDay3() {
+	function testDay03() {
 		Assert.isFalse(Day3.isPossibleTriangle(5, 10, 25));
 		Assert.equals(983, Day3.countPossibleTrianglesByRow(getData("day3")));
 
 		Assert.equals(1836, Day3.countPossibleTrianglesByColumn(getData("day3")));
 	}
 
-	function testDay4() {
+	function testDay04() {
 		Assert.isTrue(Day4.checkRoom("aaaaa-bbb-z-y-x-123[abxyz]").match(Real(_)));
 		Assert.isTrue(Day4.checkRoom("a-b-c-d-e-f-g-h-987[abcde]").match(Real(_)));
 		Assert.isTrue(Day4.checkRoom("not-a-real-room-404[oarel]").match(Real(_)));
@@ -51,7 +51,7 @@ class Tests implements ITest {
 	}
 
 	@Ignored
-	function testDay5() {
+	function testDay05() {
 		Assert.equals("18f47a30", Day5.findPassword("abc"));
 		Assert.equals("f77a0e6e", Day5.findPassword("cxdnnyjw"));
 
@@ -59,7 +59,7 @@ class Tests implements ITest {
 		Assert.equals("999828ec", Day5.findPassword2("cxdnnyjw"));
 	}
 
-	function testDay6() {
+	function testDay06() {
 		Assert.equals("easter", Day6.getErrorCorrectedMessage(getData("day6-0"), MostCommon));
 		Assert.equals("qoclwvah", Day6.getErrorCorrectedMessage(getData("day6-1"), MostCommon));
 
@@ -67,7 +67,7 @@ class Tests implements ITest {
 		Assert.equals("ryrgviuv", Day6.getErrorCorrectedMessage(getData("day6-1"), LeastCommon));
 	}
 
-	function testDay7() {
+	function testDay07() {
 		Assert.isTrue(Day7.supportsTLS("abba[mnop]qrst"));
 		Assert.isFalse(Day7.supportsTLS("abcd[bddb]xyyx"));
 		Assert.isFalse(Day7.supportsTLS("aaaa[qwer]tyui"));
@@ -81,7 +81,7 @@ class Tests implements ITest {
 		Assert.equals(231, Day7.count(getData("day7"), Day7.supportsSSL));
 	}
 
-	function testDay8() {
+	function testDay08() {
 		Day8.visualize(7, 3, [
 			Rect(3, 2),
 			RotateColumn(1, 1),
@@ -94,7 +94,7 @@ class Tests implements ITest {
 		// Day8.visualize(50, 6, Day8.parseOperations(getData("day8")));
 	}
 
-	function testDay9() {
+	function testDay09() {
 		Assert.equals("ADVENT".length, Day9.decompress("ADVENT", false));
 		Assert.equals("ABBBBBC".length, Day9.decompress("A(1x5)BC", false));
 		Assert.equals("XYZXYZXYZ".length, Day9.decompress("(3x3)XYZ", false));
@@ -108,5 +108,9 @@ class Tests implements ITest {
 		Assert.equals(241920, Day9.decompress("(27x12)(20x12)(13x14)(7x10)(1x12)A", true));
 		Assert.equals(445, Day9.decompress("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN", true));
 		Assert.equals(11125026826, Day9.decompress(getData("day9"), true));
+	}
+
+	function testDay10() {
+		Assert.equals(113, Day10.simulate(getData("day10")));
 	}
 }
