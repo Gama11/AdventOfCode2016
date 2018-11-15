@@ -1,28 +1,27 @@
 package days;
 
 class Day11 {
-	public static function findMinimumSteps(facility:Facility):Float {
+	public static function findMinimumSteps(root:Facility):Float {
 		var exploredFacilities = [];
-		var min = Math.POSITIVE_INFINITY;
-		function explore(facility:Facility, depth:Int) {
-			if (depth > min) {
-				return;
+		var queue = [{depth: 0, facility: root}];
+		while (true) {
+			var node = queue.shift();
+			if (isComplete(node.facility)) {
+				return node.depth;
 			}
-			var uniqueString = getUniqueString(facility);
+			var uniqueString = getUniqueString(node.facility);
 			if (exploredFacilities.indexOf(uniqueString) != -1) {
-				return;
+				continue;
 			}
 			exploredFacilities.push(uniqueString);
-			for (facility in getPossibleNextStates(facility)) {
-				if (isComplete(facility)) {
-					min = depth;
-					return;
-				}
-				explore(facility, depth + 1);
-			}
+			for (state in getPossibleNextStates(node.facility)) {
+				queue.push({
+					depth: node.depth + 1,
+					facility: state
+				});
+			} 
 		}
-		explore(facility, 0);
-		return min;
+		return Math.POSITIVE_INFINITY;
 	}
 
 	static function isComplete(facility:Facility):Bool {
