@@ -2,70 +2,40 @@ package days;
 
 class Day11 {
 	public static function findMinimumSteps(facility:Facility) {
-		trace(getPossibleMoves(facility, Up));
-		trace(getPossibleMoves(facility, Down));
+		var exploredFacilities = [];
+		for (floor in facility.floors) {
+			trace(getItemCombinations(floor));
+			trace(isValidFloor(floor));
+		}
 	}
 
-	static function getPossibleMoves(facility:Facility, direction:MoveDirection):Array<Move> {
-		var nextFloorID = facility.elevator + direction;
-		if (nextFloorID < 0 || nextFloorID >= facility.floors.length) {
-			return [];
-		}
-		var moves = [];
-		var floor = facility.floors[facility.elevator];
-		var nextFloor = facility.floors[nextFloorID];
-		var nextFloorHasGenerators = nextFloor.exists(item -> item.match(Generator(_)));
-		var unshieldedChips = nextFloor.filter(item -> {
-			return switch (item) {
-				case Generator(_):
-					false;
-				case Microchip(element):
-					!nextFloor.exists(i -> i.equals(Generator(element)));
-			}
-		});
-
-		inline function addMove(items:Array<Item>) {
-			moves.push({
-				direction: direction,
-				items: items
-			});
-		}
-
+	static function isValidFloor(floor:Floor):Bool {
+		var generators = floor.filter(item -> item.match(Generator(_)));
 		for (item in floor) {
 			switch (item) {
-				case Generator(element):
-					var compatibleChip = Microchip(element);
-					if (unshieldedChips.length == 0 && floor.exists(i -> i.equals(compatibleChip))) {
-						addMove([item, compatibleChip]);
-					}
-					if (unshieldedChips.length == 1 && unshieldedChips[0].equals(compatibleChip)) {
-						addMove([item]);
+				case Microchip(element):
+					if (generators.length > 0 && !generators.exists(item -> item.equals(Generator(element)))) {
+						return false;
 					}
 				case _:
 			}
 		}
+		return true;
+	}
 
-		function canChipBeBrought(chip:Item):Bool {
-			return switch (chip) {
-				case Generator(_): false;
-				case Microchip(element):
-					!nextFloorHasGenerators || nextFloor.exists(i -> i.equals(Generator(element)));
-			}
-		}
-		var bringableChips = floor.filter(canChipBeBrought);
-		for (chip in bringableChips) {
-			for (chip2 in bringableChips) {
-				if (chip.equals(chip2)) {
-					continue;
-				}
-				if (!moves.exists(move -> chip2.equals(move.items[0]) && chip.equals(move.items[1]))) {
-					addMove([chip, chip2]);
+	static function getItemCombinations(floor:Floor):Array<Array<Item>> {
+		var itemCombinations:Array<Array<Item>> = [];
+		for (i1 in floor) {
+			for (i2 in floor) {
+				if (!i1.equals(i2) && !itemCombinations.exists(t -> t[0].equals(i2) && t[1].equals(i1))) {
+					itemCombinations.push([i1, i2]);
 				}
 			}
-			addMove([chip]);
 		}
-
-		return moves;
+		for (item in floor) {
+			itemCombinations.push([item]);
+		}
+		return itemCombinations;
 	}
 }
 
@@ -79,12 +49,4 @@ typedef Facility = {
 	var elevator:Int;
 }
 
-typedef Move = {
-	var direction:MoveDirection;
-	var items:Array<Item>;
-}
-
-enum abstract MoveDirection(Int) to Int {
-	var Up = 1;
-	var Down = -1;
-}
+typedef Floor = Array<Item>;
