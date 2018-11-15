@@ -118,7 +118,7 @@ class Tests implements ITest {
 	}
 
 	function testDay11() {
-		Day11.findMinimumSteps({
+		Assert.equals(11, Day11.findMinimumSteps({
 			elevator: 0,
 			floors: [
 				[Microchip("hydrogen"), Microchip("lithium")],
@@ -126,9 +126,9 @@ class Tests implements ITest {
 				[Generator("lithium")],
 				[]
 			]
-		});
+		}));
 
-		Day11.findMinimumSteps({
+		/* Day11.findMinimumSteps({
 			elevator: 0,
 			floors: [
 				[Generator("promethium"), Microchip("promethium")],
@@ -136,6 +136,6 @@ class Tests implements ITest {
 				[Microchip("cobalt"), Microchip("curium"), Microchip("ruthenium"), Microchip("plutonium")],
 				[]
 			]
-		});
+		}); */
 	}
 }
