@@ -81,6 +81,7 @@ class Tests implements ITest {
 		Assert.equals(231, Day7.count(getData("day7"), Day7.supportsSSL));
 	}
 
+	@Ignored
 	function testDay08() {
 		Day8.visualize(7, 3, [
 			Rect(3, 2),
@@ -114,5 +115,27 @@ class Tests implements ITest {
 		var result = Day10.simulate(getData("day10"));
 		Assert.equals(113, result.part1);
 		Assert.equals(12803, result.part2);
+	}
+
+	function testDay11() {
+		Day11.findMinimumSteps({
+			elevator: 0,
+			floors: [
+				[Microchip("hydrogen"), Microchip("lithium")],
+				[Generator("hydrogen")],
+				[Generator("lithium")],
+				[]
+			]
+		});
+
+		Day11.findMinimumSteps({
+			elevator: 0,
+			floors: [
+				[Generator("promethium"), Microchip("promethium")],
+				[Generator("cobalt"), Generator("curium"), Generator("ruthenium"), Generator("plutonium")],
+				[Microchip("cobalt"), Microchip("curium"), Microchip("ruthenium"), Microchip("plutonium")],
+				[]
+			]
+		});
 	}
 }
