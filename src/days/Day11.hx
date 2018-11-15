@@ -2,7 +2,7 @@ package days;
 
 class Day11 {
 	public static function findMinimumSteps(root:Facility):Float {
-		var exploredFacilities = [];
+		var exploredFacilities = new Map<String, Bool>();
 		var queue = [{depth: 0, facility: root}];
 		while (true) {
 			var node = queue.shift();
@@ -10,10 +10,10 @@ class Day11 {
 				return node.depth;
 			}
 			var uniqueString = getUniqueString(node.facility);
-			if (exploredFacilities.indexOf(uniqueString) != -1) {
+			if (exploredFacilities[uniqueString] != null) {
 				continue;
 			}
-			exploredFacilities.push(uniqueString);
+			exploredFacilities[uniqueString] = true;
 			for (state in getPossibleNextStates(node.facility)) {
 				queue.push({
 					depth: node.depth + 1,
@@ -106,10 +106,26 @@ class Day11 {
 	}
 
 	static function getUniqueString(facility:Facility):String {
+		var i = 0;
+		var bindings = new Map<String, Int>();
+		for (floor in facility.floors) {
+			floor.sort(Reflect.compare);
+		}
+		// each G-M pair is interchangeable, so they should produce the same string to be pruned
+		for (floor in facility.floors) {
+			for (item in floor) {
+				switch (item) {
+					case Generator(element) | Microchip(element):
+						if (bindings[element] == null) {
+							bindings[element] = i++;
+						}
+				}
+			}
+		}
 		var floors = facility.floors.map(floor -> floor.map(item -> {
 			switch (item) {
-				case Generator(element): element.substr(0, 2) + "G";
-				case Microchip(element): element.substr(0, 2) + "M";
+				case Generator(element): "G" + bindings[element];
+				case Microchip(element): "M" + bindings[element];
 			}
 		}));
 		for (floor in floors) {
