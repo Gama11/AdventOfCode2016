@@ -15,7 +15,7 @@ class Day11 {
 		var floor = facility.floors[facility.elevator];
 		var nextFloor = facility.floors[nextFloorID];
 		var nextFloorHasGenerators = nextFloor.exists(item -> item.match(Generator(_)));
-		var nextFloorHasUnshieldedChips = nextFloor.exists(item -> {
+		var unshieldedChips = nextFloor.filter(item -> {
 			return switch (item) {
 				case Generator(_):
 					false;
@@ -35,14 +35,13 @@ class Day11 {
 			switch (item) {
 				case Generator(element):
 					var compatibleChip = Microchip(element);
-					if (!nextFloorHasUnshieldedChips) {
-						if (floor.exists(i -> i.equals(compatibleChip))) {
-							addMove([item, compatibleChip]);
-						}
+					if (unshieldedChips.length == 0 && floor.exists(i -> i.equals(compatibleChip))) {
+						addMove([item, compatibleChip]);
+					}
+					if (unshieldedChips.length == 1 && unshieldedChips[0].equals(compatibleChip)) {
 						addMove([item]);
 					}
 				case _:
-
 			}
 		}
 
