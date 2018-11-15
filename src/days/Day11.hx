@@ -30,6 +30,7 @@ class Day11 {
 				items: items
 			});
 		}
+
 		for (item in floor) {
 			switch (item) {
 				case Generator(element):
@@ -40,13 +41,31 @@ class Day11 {
 						}
 						addMove([item]);
 					}
-				case Microchip(element):
-					if (!nextFloorHasGenerators || nextFloor.exists(i -> i.equals(Generator(element)))) {
-						addMove([item]);
-					}
+				case _:
 
 			}
 		}
+
+		function canChipBeBrought(chip:Item):Bool {
+			return switch (chip) {
+				case Generator(_): false;
+				case Microchip(element):
+					!nextFloorHasGenerators || nextFloor.exists(i -> i.equals(Generator(element)));
+			}
+		}
+		var bringableChips = floor.filter(canChipBeBrought);
+		for (chip in bringableChips) {
+			for (chip2 in bringableChips) {
+				if (chip.equals(chip2)) {
+					continue;
+				}
+				if (!moves.exists(move -> chip2.equals(move.items[0]) && chip.equals(move.items[1]))) {
+					addMove([chip, chip2]);
+				}
+			}
+			addMove([chip]);
+		}
+
 		return moves;
 	}
 }
