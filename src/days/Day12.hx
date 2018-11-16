@@ -22,11 +22,11 @@ class Day12 {
 		return Direct(value);
 	}
 
-	public static function executeAssembunny(input:String):Registers {
+	public static function executeAssembunny(input:String, ignition:Int):Registers {
 		var registers:Registers = [
 			"a" => 0,
 			"b" => 0,
-			"c" => 0,
+			"c" => ignition,
 			"d" => 0
 		];
 		var instructions = parseInstructions(input);

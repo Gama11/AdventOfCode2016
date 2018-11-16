@@ -151,6 +151,7 @@ class Tests implements ITest {
 	}
 
 	function testDay12() {
-		Assert.equals(318117, Day12.executeAssembunny(getData("day12"))["a"]);
+		Assert.equals(318117, Day12.executeAssembunny(getData("day12"), 0)["a"]);
+		Assert.equals(9227771, Day12.executeAssembunny(getData("day12"), 1)["a"]);
 	}
 }
