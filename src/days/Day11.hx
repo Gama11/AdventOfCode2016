@@ -111,7 +111,7 @@ class Day11 {
 		for (floor in facility.floors) {
 			floor.sort(Reflect.compare);
 		}
-		// each G-M pair is interchangeable, so they should produce the same string to be pruned
+		// each G-M pair is interchangeable, so they should produce the same string to be pruned 
 		for (floor in facility.floors) {
 			for (item in floor) {
 				switch (item) {

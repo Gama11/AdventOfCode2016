@@ -2,11 +2,11 @@
 -D eval-stack
 -main Tests
 -lib utest
-# --interp
+--interp
 
 # -js export/test.js
 # -cmd node export/test.js
 # -lib hxnodejs
 
--cpp export/cpp
--cmd export\cpp\Tests.exe
+# -cpp export/cpp
+# -cmd export\cpp\Tests.exe
