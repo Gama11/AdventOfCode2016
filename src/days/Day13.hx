@@ -1,8 +1,8 @@
 package days;
 
 import Util.Movement;
-import haxe.ds.HashMap;
 import Util.Point;
+import haxe.ds.HashMap;
 
 class Day13 {
 	public static function isWall(x:Int, y:Int, favoriteNumber:Int):Bool {
@@ -22,7 +22,7 @@ class Day13 {
 		return ones;
 	}
 
-	public static function findDistance(goal:Point, favoriteNumber:Int):Null<Int> {
+	public static function findDistance(goal:Point, favoriteNumber:Int) {
 		var start = new Point(1, 1);
 		
 		var map = new HashMap<Point, Bool>();
@@ -57,7 +57,11 @@ class Day13 {
 			openSet.sort((p1, p2) -> nodes.get(p2).fScore - nodes.get(p1).fScore);
 			var current = openSet.shift();
 			if (current.equals(goal)) {
-				return nodes.get(current).gScore;
+				var reachableIn50Steps = [for (node in nodes) node.gScore].filter(score -> score <= 50).length;
+				return {
+					reachableIn50Steps: reachableIn50Steps,
+					fewestStepsToGoal: nodes.get(current).gScore
+				};
 			}
 
 			closedSet.set(current, true);
