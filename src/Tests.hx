@@ -1,3 +1,4 @@
+import Util.Point;
 import days.*;
 import utest.ITest;
 import utest.Assert;
@@ -168,5 +169,8 @@ class Tests implements ITest {
 		Assert.isFalse(exampleMap(0, 1));
 		Assert.isTrue(exampleMap(1, 0));
 		Assert.isTrue(exampleMap(9, 6));
+
+		Assert.equals(11, Day13.findDistance(new Point(7, 4), 10));
+		Assert.equals(86, Day13.findDistance(new Point(31, 39), 1364));
 	}
 }
