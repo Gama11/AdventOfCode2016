@@ -150,8 +150,23 @@ class Tests implements ITest {
 		}));
 	}
 
+	@Ignored
 	function testDay12() {
 		Assert.equals(318117, Day12.executeAssembunny(getData("day12"), 0)["a"]);
 		Assert.equals(9227771, Day12.executeAssembunny(getData("day12"), 1)["a"]);
+	}
+
+	function testDay13() {
+		Assert.equals(1, Day13.countBinaryOnes(1));
+		Assert.equals(1, Day13.countBinaryOnes(2));
+		Assert.equals(2, Day13.countBinaryOnes(3));
+		Assert.equals(8, Day13.countBinaryOnes(255));
+		Assert.equals(1, Day13.countBinaryOnes(256));
+
+		var exampleMap = Day13.isWall.bind(_, _, 10);
+		Assert.isFalse(exampleMap(0, 0));
+		Assert.isFalse(exampleMap(0, 1));
+		Assert.isTrue(exampleMap(1, 0));
+		Assert.isTrue(exampleMap(9, 6));
 	}
 }
