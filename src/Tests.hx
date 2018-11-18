@@ -175,4 +175,12 @@ class Tests implements ITest {
 		Assert.equals(86, result.fewestStepsToGoal);
 		Assert.equals(127, result.reachableIn50Steps - 3);
 	}
+
+	function testDay14() {
+		Assert.equals("8", Day14.characterInRow("cc38887a5", 3));
+		Assert.equals(null, Day14.characterInRow("cc38887a5", 4));
+		Assert.equals("7", Day14.characterInRow("cc388877777a5", 4));
+		Assert.equals(22728, Day14.get64thKeyIndex("abc")[63]);
+		Assert.equals(15168, Day14.get64thKeyIndex("qzyelonm")[63]);
+	}
 }
