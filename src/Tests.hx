@@ -176,6 +176,7 @@ class Tests implements ITest {
 		Assert.equals(127, result.reachableIn50Steps - 3);
 	}
 
+	@Ignored
 	function testDay14() {
 		Assert.equals("8", Day14.characterInRow("cc38887a5", 3));
 		Assert.equals(null, Day14.characterInRow("cc38887a5", 4));
@@ -184,5 +185,10 @@ class Tests implements ITest {
 		Assert.equals(15168, Day14.get64thKeyIndex("qzyelonm"));
 
 		Assert.equals(20864, Day14.get64thKeyIndex("qzyelonm", 2016));
+	}
+
+	function testDay15() {
+		Assert.equals(5, Day15.findTimeToPushButton(getData("day15-0")));
+		Assert.equals(400589, Day15.findTimeToPushButton(getData("day15-1")));
 	}
 }
