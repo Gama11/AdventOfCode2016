@@ -190,5 +190,6 @@ class Tests implements ITest {
 	function testDay15() {
 		Assert.equals(5, Day15.findTimeToPushButton(getData("day15-0")));
 		Assert.equals(400589, Day15.findTimeToPushButton(getData("day15-1")));
+		Assert.equals(3045959, Day15.findTimeToPushButton(getData("day15-2")));
 	}
 }
