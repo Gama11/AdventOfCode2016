@@ -198,5 +198,8 @@ class Tests implements ITest {
 		Assert.equals("001", Day16.generateData("0"));
 		Assert.equals("11111000000", Day16.generateData("11111"));
 		Assert.equals("1111000010100101011110000", Day16.generateData("111100001010"));
+		Assert.equals("100", Day16.calculateChecksum("110010110100"));
+		Assert.equals("01100", Day16.fillDisk("10000", 20));
+		Assert.equals("10010010110011010", Day16.fillDisk("01000100010010111", 272));
 	}
 }
