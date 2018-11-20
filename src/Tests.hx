@@ -192,4 +192,11 @@ class Tests implements ITest {
 		Assert.equals(400589, Day15.findTimeToPushButton(getData("day15-1")));
 		Assert.equals(3045959, Day15.findTimeToPushButton(getData("day15-2")));
 	}
+
+	function testDay16() {
+		Assert.equals("100", Day16.generateData("1"));
+		Assert.equals("001", Day16.generateData("0"));
+		Assert.equals("11111000000", Day16.generateData("11111"));
+		Assert.equals("1111000010100101011110000", Day16.generateData("111100001010"));
+	}
 }
