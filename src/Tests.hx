@@ -193,6 +193,7 @@ class Tests implements ITest {
 		Assert.equals(3045959, Day15.findTimeToPushButton(getData("day15-2")));
 	}
 
+	@Ignored
 	function testDay16() {
 		Assert.equals("100", Day16.generateData("1"));
 		Assert.equals("001", Day16.generateData("0"));
@@ -202,5 +203,12 @@ class Tests implements ITest {
 		Assert.equals("01100", Day16.fillDisk("10000", 20));
 		Assert.equals("10010010110011010", Day16.fillDisk("01000100010010111", 272));
 		Assert.equals("01010100101011100", Day16.fillDisk("01000100010010111", 35651584));
+	}
+
+	function testDay17() {
+		Assert.equals("DDRRRD", Day17.findShortestPath("ihgpwlah"));
+		Assert.equals("DDUDRLRRUDRD", Day17.findShortestPath("kglvqrro"));
+		Assert.equals("DRURDRUDDLLDLUURRDULRLDUUDDDRR", Day17.findShortestPath("ulqzkmiv"));
+		Assert.equals("RDDRULDDRR", Day17.findShortestPath("ioramepc"));
 	}
 }
