@@ -5,14 +5,14 @@ import Util.Movement.*;
 import Util.Point;
 
 class Day17 {
-	public static function findShortestPath(passcode:String):String {
+	public static function findPath(passcode:String, condition:PathCondition):String {
 		var goal = new Point(3, 3);
 		function explore(position:Point, path:String):String {
 			if (position.equals(goal)) {
 				return path;
 			}
 			var moves = getPossibleMoves(position, passcode + path);
-			var shortestPath:String = null;
+			var bestPath:String = null;
 			for (move in moves) {
 				var newPosition = position.add(move);
 				var newPath = path + switch (move) {
@@ -23,12 +23,15 @@ class Day17 {
 				}
 				var pathForMove = explore(newPosition, newPath);
 				if (pathForMove != null) {
-					if (shortestPath == null || shortestPath.length > pathForMove.length) {
-						shortestPath = pathForMove;
+					if (bestPath == null || switch (condition) {
+						case Shortest: bestPath.length > pathForMove.length;
+						case Longest: bestPath.length < pathForMove.length;
+					}) {
+						bestPath = pathForMove;
 					}
 				}
 			}
-			return shortestPath;
+			return bestPath;
 		}
 		return explore(new Point(0, 0), "");
 	}
@@ -53,4 +56,9 @@ class Day17 {
 		}
 		return possibleMoves;
 	}
+}
+
+enum PathCondition {
+	Shortest;
+	Longest;
 }

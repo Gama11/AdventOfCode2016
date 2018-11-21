@@ -206,9 +206,14 @@ class Tests implements ITest {
 	}
 
 	function testDay17() {
-		Assert.equals("DDRRRD", Day17.findShortestPath("ihgpwlah"));
-		Assert.equals("DDUDRLRRUDRD", Day17.findShortestPath("kglvqrro"));
-		Assert.equals("DRURDRUDDLLDLUURRDULRLDUUDDDRR", Day17.findShortestPath("ulqzkmiv"));
-		Assert.equals("RDDRULDDRR", Day17.findShortestPath("ioramepc"));
+		Assert.equals("DDRRRD", Day17.findPath("ihgpwlah", Shortest));
+		Assert.equals("DDUDRLRRUDRD", Day17.findPath("kglvqrro", Shortest));
+		Assert.equals("DRURDRUDDLLDLUURRDULRLDUUDDDRR", Day17.findPath("ulqzkmiv", Shortest));
+		Assert.equals("RDDRULDDRR", Day17.findPath("ioramepc", Shortest));
+
+		Assert.equals(370, Day17.findPath("ihgpwlah", Longest).length);
+		Assert.equals(492, Day17.findPath("kglvqrro", Longest).length);
+		Assert.equals(830, Day17.findPath("ulqzkmiv", Longest).length);
+		Assert.equals(766, Day17.findPath("ioramepc", Longest).length);
 	}
 }
