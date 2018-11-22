@@ -1,10 +1,13 @@
 package days;
 
 class Day18 {
-	public static function countSafeTiles(firstRow:String):Int {
-		var grid:Array<Array<Tile>> = [firstRow.split("")];
-		while (grid.length < 40) {
-			var previousRow = grid[grid.length - 1];
+	public static function countSafeTiles(firstRow:String, rows:Int):Int {
+		var previousRow:Array<Tile> = firstRow.split("");
+		function countSafeTilesInRow(row:Array<Tile>) {
+			return row.filter(tile -> tile == Safe).length;
+		}
+		var safeTiles = countSafeTilesInRow(previousRow);
+		for (_ in 1...rows) {
 			var newRow = [];
 			for (i in 0...previousRow.length) {
 				inline function getTile(i:Int) {
@@ -22,9 +25,10 @@ class Day18 {
 					case _: Safe;
 				});
 			}
-			grid.push(newRow);
+			safeTiles += countSafeTilesInRow(newRow);
+			previousRow = newRow;
 		}
-		return grid.flatten().filter(tile -> tile == Safe).length;
+		return safeTiles;
 	}
 }
 

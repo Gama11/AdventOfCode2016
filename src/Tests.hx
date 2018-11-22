@@ -219,6 +219,7 @@ class Tests implements ITest {
 	}
 
 	function testDay18() {
-		Assert.equals(1961, Day18.countSafeTiles(getData("day18")));
+		Assert.equals(1961, Day18.countSafeTiles(getData("day18"), 40));
+		Assert.equals(20000795, Day18.countSafeTiles(getData("day18"), 400000));
 	}
 }
