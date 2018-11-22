@@ -205,6 +205,7 @@ class Tests implements ITest {
 		Assert.equals("01010100101011100", Day16.fillDisk("01000100010010111", 35651584));
 	}
 
+	@Ignored
 	function testDay17() {
 		Assert.equals("DDRRRD", Day17.findPath("ihgpwlah", Shortest));
 		Assert.equals("DDUDRLRRUDRD", Day17.findPath("kglvqrro", Shortest));
@@ -215,5 +216,9 @@ class Tests implements ITest {
 		Assert.equals(492, Day17.findPath("kglvqrro", Longest).length);
 		Assert.equals(830, Day17.findPath("ulqzkmiv", Longest).length);
 		Assert.equals(766, Day17.findPath("ioramepc", Longest).length);
+	}
+
+	function testDay18() {
+		Assert.equals(1961, Day18.countSafeTiles(getData("day18")));
 	}
 }
