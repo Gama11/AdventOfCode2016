@@ -218,8 +218,13 @@ class Tests implements ITest {
 		Assert.equals(766, Day17.findPath("ioramepc", Longest).length);
 	}
 
+	@Ignored
 	function testDay18() {
 		Assert.equals(1961, Day18.countSafeTiles(getData("day18"), 40));
 		Assert.equals(20000795, Day18.countSafeTiles(getData("day18"), 400000));
+	}
+
+	function testDay19() {
+		Assert.equals(1816277, Day19.getWinner(3005290));
 	}
 }
