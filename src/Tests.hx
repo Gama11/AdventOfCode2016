@@ -225,6 +225,9 @@ class Tests implements ITest {
 	}
 
 	function testDay19() {
+		Assert.equals(3, Day19.getWinner(5));
 		Assert.equals(1816277, Day19.getWinner(3005290));
+
+		Assert.equals(2, Day19.getWinner2(5));
 	}
 }
