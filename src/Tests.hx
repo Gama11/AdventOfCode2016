@@ -224,10 +224,16 @@ class Tests implements ITest {
 		Assert.equals(20000795, Day18.countSafeTiles(getData("day18"), 400000));
 	}
 
+	@Ignored
 	function testDay19() {
 		Assert.equals(3, Day19.getWinner(5));
 		Assert.equals(1816277, Day19.getWinner(3005290));
 
 		Assert.equals(2, Day19.getWinner2(5));
+		Assert.equals(1410967, Day19.getWinner2(3005290));
+	}
+
+	function testDay20() {
+		Assert.equals(17348574, Day20.getLowestValidIP(getData("day20")));
 	}
 }
