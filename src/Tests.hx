@@ -235,5 +235,6 @@ class Tests implements ITest {
 
 	function testDay20() {
 		Assert.equals(17348574, Day20.getLowestValidIP(getData("day20")));
+		Assert.equals(104, Day20.countValidIPs(getData("day20")));
 	}
 }

@@ -14,7 +14,7 @@ class Day20 {
 		});
 	}
 
-	public static function getLowestValidIP(input:String):Float {
+	static function simplifyBlacklist(input:String):Array<Range> {
 		var blacklist = parseBlacklist(input);
 		blacklist.sort((range1, range2) -> {
 			if (range2.min < range1.min) {
@@ -36,13 +36,27 @@ class Day20 {
 				prev = prev.combine(range);
 			} else {
 				simplifiedBlacklist.push(prev);
-				prev = null;
+				prev = range;
 			}
 		}
 		if (prev != null) {
 			simplifiedBlacklist.push(prev);
 		}
-		return simplifiedBlacklist[0].max + 1;
+		return simplifiedBlacklist;
+	}
+
+	public static function getLowestValidIP(input:String):Float {
+		return simplifyBlacklist(input)[0].max + 1;
+	}
+
+	public static function countValidIPs(input:String):Int {
+		var blacklist = simplifyBlacklist(input);
+		var count = 0;
+		for (i in 1...blacklist.length) {
+			var space = blacklist[i].min - blacklist[i - 1].max - 1;
+			count += Std.int(space);
+		}
+		return count;
 	}
 }
 
