@@ -237,4 +237,9 @@ class Tests implements ITest {
 		Assert.equals(17348574, Day20.getLowestValidIP(getData("day20")));
 		Assert.equals(104, Day20.countValidIPs(getData("day20")));
 	}
+
+	function testDay21() {
+		Assert.equals("decab", Day21.scramble(getData("day21-0"), "abcde"));
+		Assert.equals("gcedfahb", Day21.scramble(getData("day21-1"), "abcdefgh"));
+	}
 }
