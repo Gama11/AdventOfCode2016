@@ -57,8 +57,7 @@ class Day21 {
 		}
 	}
 
-	public static function scramble(input:String, password:String):String {
-		var operations = parseOperations(input);
+	static function executeOperations(operations:Array<Operation>, password:String):String {
 		var a = password.split("");
 		for (operation in operations) {
 			switch (operation) {
@@ -81,6 +80,20 @@ class Day21 {
 						steps++;
 					}
 					rotate(a, steps);
+				
+				case InverseRotateOnLetter(letter):
+					var i = a.indexOf(letter);
+					switch (i) {
+						case 0: rotate(a, -1);
+						case 1: rotate(a, -1);
+						case 2: rotate(a, 2);
+						case 3: rotate(a, -2);
+						case 4: rotate(a, 1);
+						case 5: rotate(a, -3);
+						case 6: rotate(a, 0);
+						case 7: rotate(a, 4);
+						case _: throw 'unsupported';
+					}
 
 				case Reverse(x, y):
 					var reversed = [for (i in x...y + 1) a[i]];
@@ -97,6 +110,32 @@ class Day21 {
 		}
 		return a.join("");
 	}
+
+	public static function scramble(input:String, password:String):String {
+		return executeOperations(parseOperations(input), password);
+	}
+
+	static function invertOperations(operations:Array<Operation>):Array<Operation> {
+		operations = operations.copy();
+		operations.reverse();
+		return operations.map(operation -> {
+			switch (operation) {
+				case SwapPositions(x, y): SwapPositions(y, x);
+				case SwapLetters(x, y): SwapLetters(y, x);
+				case Rotate(Left, steps): Rotate(Right, steps);
+				case Rotate(Right, steps): Rotate(Left, steps);
+				case RotateOnLetter(letter): InverseRotateOnLetter(letter);
+				case InverseRotateOnLetter(letter): RotateOnLetter(letter);
+				case Reverse(x, y): Reverse(x, y);
+				case Move(x, y): Move(y, x);
+			}
+		});
+	}
+
+	public static function unscramble(input:String, password:String):String {
+		var operations = invertOperations(parseOperations(input));
+		return executeOperations(operations, password);
+	}
 }
 
 private enum Operation {
@@ -104,6 +143,7 @@ private enum Operation {
 	SwapLetters(x:String, y:String);
 	Rotate(direction:Direction, steps:Int);
 	RotateOnLetter(letter:String);
+	InverseRotateOnLetter(letter:String);
 	Reverse(x:Int, y:Int);
 	Move(x:Int, y:Int);
 }

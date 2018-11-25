@@ -241,5 +241,9 @@ class Tests implements ITest {
 	function testDay21() {
 		Assert.equals("decab", Day21.scramble(getData("day21-0"), "abcde"));
 		Assert.equals("gcedfahb", Day21.scramble(getData("day21-1"), "abcdefgh"));
+
+		Assert.equals("abcde", Day21.unscramble(getData("day21-0"), "decab"));
+		Assert.equals("abcdefgh", Day21.unscramble(getData("day21-1"), "gcedfahb"));
+		Assert.equals("hegbdcfa", Day21.unscramble(getData("day21-1"), "fbgdceah"));
 	}
 }
