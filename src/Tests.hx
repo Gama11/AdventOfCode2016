@@ -246,4 +246,8 @@ class Tests implements ITest {
 		Assert.equals("abcdefgh", Day21.unscramble(getData("day21-1"), "gcedfahb"));
 		Assert.equals("hegbdcfa", Day21.unscramble(getData("day21-1"), "fbgdceah"));
 	}
+
+	function testDay22() {
+		Assert.equals(985, Day22.countViablePairs(getData("day22")));
+	}
 }
