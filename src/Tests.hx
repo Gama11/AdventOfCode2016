@@ -250,4 +250,9 @@ class Tests implements ITest {
 	function testDay22() {
 		Assert.equals(985, Day22.countViablePairs(getData("day22")));
 	}
+
+	function testDay23() {
+		Assert.equals(3, Day23.executeAssembunny(getData("day23-0"), 0)["a"]);
+		Assert.equals(11123, Day23.executeAssembunny(getData("day23-1"), 7)["a"]);
+	}
 }
