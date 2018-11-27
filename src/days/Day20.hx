@@ -7,7 +7,7 @@ class Day20 {
 			var split = range.split("-");
 			var min = Std.parseFloat(split[0]);
 			var max = Std.parseFloat(split[1]);
-			if (min == null || max == null) {
+			if (Math.isNaN(min) || Math.isNaN(max)) {
 				throw 'invalid range: $range';
 			}
 			return {min: min, max: max};
