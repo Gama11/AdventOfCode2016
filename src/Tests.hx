@@ -249,6 +249,7 @@ class Tests implements ITest {
 
 	function testDay22() {
 		Assert.equals(985, Day22.countViablePairs(getData("day22")));
+		Assert.equals(179, Day22.findMinimumDataAccessSteps(getData("day22")));
 	}
 
 	@Ignored
