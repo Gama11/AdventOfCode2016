@@ -20,6 +20,7 @@ class Day17 {
 					case Down: "D";
 					case Left: "L";
 					case Right: "R";
+					case _: throw "unknown move";
 				}
 				var pathForMove = explore(newPosition, newPath);
 				if (pathForMove != null) {
