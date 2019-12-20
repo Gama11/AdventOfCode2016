@@ -84,12 +84,7 @@ class Tests implements ITest {
 
 	@Ignored
 	function testDay08() {
-		Day8.visualize(7, 3, [
-			Rect(3, 2),
-			RotateColumn(1, 1),
-			RotateRow(0, 4),
-			RotateColumn(1, 1)
-		]);
+		Day8.visualize(7, 3, [Rect(3, 2), RotateColumn(1, 1), RotateRow(0, 4), RotateColumn(1, 1)]);
 
 		Assert.equals(106, Day8.determineLitPixelCount(50, 6, getData("day8")));
 		// part 2
@@ -134,8 +129,18 @@ class Tests implements ITest {
 			elevator: 0,
 			floors: [
 				[Generator("promethium"), Microchip("promethium")],
-				[Generator("cobalt"), Generator("curium"), Generator("ruthenium"), Generator("plutonium")],
-				[Microchip("cobalt"), Microchip("curium"), Microchip("ruthenium"), Microchip("plutonium")],
+				[
+					Generator("cobalt"),
+					Generator("curium"),
+					Generator("ruthenium"),
+					Generator("plutonium")
+				],
+				[
+					Microchip("cobalt"),
+					Microchip("curium"),
+					Microchip("ruthenium"),
+					Microchip("plutonium")
+				],
 				[]
 			]
 		}));
@@ -143,9 +148,26 @@ class Tests implements ITest {
 		Assert.equals(57, Day11.findMinimumSteps({
 			elevator: 0,
 			floors: [
-				[Generator("elerium"), Microchip("elerium"), Generator("dilithium"), Microchip("dilithium"), Generator("promethium"), Microchip("promethium")],
-				[Generator("cobalt"), Generator("curium"), Generator("ruthenium"), Generator("plutonium")],
-				[Microchip("cobalt"), Microchip("curium"), Microchip("ruthenium"), Microchip("plutonium")],
+				[
+					Generator("elerium"),
+					Microchip("elerium"),
+					Generator("dilithium"),
+					Microchip("dilithium"),
+					Generator("promethium"),
+					Microchip("promethium")
+				],
+				[
+					Generator("cobalt"),
+					Generator("curium"),
+					Generator("ruthenium"),
+					Generator("plutonium")
+				],
+				[
+					Microchip("cobalt"),
+					Microchip("curium"),
+					Microchip("ruthenium"),
+					Microchip("plutonium")
+				],
 				[]
 			]
 		}));
@@ -262,7 +284,9 @@ class Tests implements ITest {
 	}
 
 	function testDay24() {
-		Assert.equals(14, Day24.findShortestPath(getData("day24-0")));
-		Assert.equals(456, Day24.findShortestPath(getData("day24-1")));
+		Assert.equals(14, Day24.findShortestPath(getData("day24-0"), false));
+		Assert.equals(456, Day24.findShortestPath(getData("day24-1"), false));
+
+		Assert.equals(704, Day24.findShortestPath(getData("day24-1"), true));
 	}
 }

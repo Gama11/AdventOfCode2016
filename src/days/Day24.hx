@@ -5,7 +5,7 @@ import Util.Movement;
 import Util.Point;
 
 class Day24 {
-	public static function findShortestPath(input:String):Int {
+	public static function findShortestPath(input:String, returnToStart:Bool):Int {
 		var grid = input.split("\n").map(line -> line.split(""));
 		var maze = new HashMap<Point, Tile>();
 		var locations = new Map<Location, Point>();
@@ -56,7 +56,9 @@ class Day24 {
 			}
 		}
 
-		return AStar.search(new SearchState("0", []), s -> s.visitedCount() == locationCount, s -> locationCount - s.visitedCount(), function(state) {
+		return AStar.search(new SearchState("0", []), function(state) {
+			return state.visitedCount() == locationCount && (state.location == "0" || !returnToStart);
+		}, s -> locationCount - s.visitedCount(), function(state) {
 			var moves = [];
 			var targets = distances[state.location];
 			for (target in targets.keys()) {
