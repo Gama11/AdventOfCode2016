@@ -2,7 +2,7 @@ package days;
 
 import haxe.crypto.Md5;
 
-class Day5 {
+class Day05 {
 	public static function findPassword(doorID:String) {
 		var i = 0;
 		var password = "";

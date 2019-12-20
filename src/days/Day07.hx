@@ -1,6 +1,6 @@
 package days;
 
-class Day7 {
+class Day07 {
 	static function matchPattern(s:String, pattern:String):Null<Array<Map<String, String>>> {
 		var i = 0;
 		var bindingsList = null;

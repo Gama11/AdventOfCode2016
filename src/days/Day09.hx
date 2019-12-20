@@ -1,6 +1,6 @@
 package days;
 
-class Day9 {
+class Day09 {
 	public static function decompress(input:String, recurse:Bool):Float {
 		var regex = ~/^\(([0-9]+)x([0-9]+)\)/;
 		var i = 0;

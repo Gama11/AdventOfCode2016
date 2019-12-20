@@ -1,6 +1,6 @@
 package days;
 
-class Day4 {
+class Day04 {
 	static function parse(input:String):Room {
 		var regex = ~/([a-z\-]+)-([0-9]+)(?:\[([a-z]+)\])?/;
 		if (!regex.match(input)) {
@@ -75,7 +75,7 @@ class Day4 {
 	}
 
 	public static function findIDforName(input:String, name:String):Int {
-		return input.split("\n").map(Day4.decrypt).find(room -> room.name == name).id;
+		return input.split("\n").map(Day04.decrypt).find(room -> room.name == name).id;
 	}
 }
 

@@ -1,6 +1,6 @@
 package days;
 
-class Day2 {
+class Day02 {
 	public static function getTestCode(instructions:String):String {
 		var keypad = [
 			["1", "2", "3"],

@@ -2,7 +2,7 @@ package days;
 
 using Lambda;
 
-class Day1 {
+class Day01 {
 	static function parseSequence(sequence:String):Array<Instruction> {
 		return sequence.split(", ").map(s -> {
 			var direction = s.charAt(0);

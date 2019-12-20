@@ -1,6 +1,6 @@
 package days;
 
-class Day6 {
+class Day06 {
 	public static function getErrorCorrectedMessage(messages:String, strategy:Strategy):String {
 		var frequencies = [];
 		for (message in messages.split("\n")) {
