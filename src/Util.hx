@@ -1,3 +1,4 @@
+import polygonal.ds.Prioritizable;
 import haxe.ds.HashMap;
 
 class Util {
@@ -87,7 +88,7 @@ class Point {
 		return x == point.x && y == point.y;
 	}
 
-	function toString() {
+	public function toString() {
 		return '($x, $y)';
 	}
 }
@@ -98,4 +99,15 @@ class Movement {
 	public static final Down = new Point(0, 1);
 	public static final Right = new Point(1, 0);
 	public static final All = [Left, Up, Down, Right];
+}
+
+class PrioritizedItem<T> implements Prioritizable {
+	public final item:T;
+	public var priority(default, null):Float = 0;
+	public var position(default, null):Int;
+
+	public function new(item:T, priority:Float) {
+		this.item = item;
+		this.priority = priority;
+	}
 }

@@ -157,6 +157,7 @@ class Tests implements ITest {
 		Assert.equals(9227771, Day12.executeAssembunny(getData("day12"), 1)["a"]);
 	}
 
+	@Ignored
 	function testDay13() {
 		Assert.equals(1, Day13.countBinaryOnes(1));
 		Assert.equals(1, Day13.countBinaryOnes(2));
@@ -247,6 +248,7 @@ class Tests implements ITest {
 		Assert.equals("hegbdcfa", Day21.unscramble(getData("day21-1"), "fbgdceah"));
 	}
 
+	@Ignored
 	function testDay22() {
 		Assert.equals(985, Day22.countViablePairs(getData("day22")));
 		Assert.equals(179, Day22.findMinimumDataAccessSteps(getData("day22")));
@@ -257,5 +259,10 @@ class Tests implements ITest {
 		Assert.equals(3, Day23.executeAssembunny(getData("day23-0"), 0)["a"]);
 		Assert.equals(11123, Day23.executeAssembunny(getData("day23-1"), 7)["a"]);
 		Assert.equals(479007683, Day23.executeAssembunny(getData("day23-1"), 12)["a"]);
+	}
+
+	function testDay24() {
+		Assert.equals(14, Day24.findShortestPath(getData("day24-0")));
+		Assert.equals(456, Day24.findShortestPath(getData("day24-1")));
 	}
 }
