@@ -289,4 +289,8 @@ class Tests implements ITest {
 
 		Assert.equals(704, Day24.findShortestPath(getData("day24-1"), true));
 	}
+
+	function testDay25() {
+		Assert.equals(180, Day25.findLowestClockSignalCode(getData("day25")));
+	}
 }

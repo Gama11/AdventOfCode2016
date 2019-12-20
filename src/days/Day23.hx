@@ -10,6 +10,7 @@ class Day23 {
 				case "dec": Decrement(v[1]);
 				case "jnz": JumpNotZero(parseValue(v[1]), parseValue(v[2]));
 				case "tgl": Toggle(v[1]);
+				case "out": Out(parseValue(v[1]));
 				case code: throw 'unknown instruction $code';
 			}
 		});
@@ -23,13 +24,8 @@ class Day23 {
 		return Direct(value);
 	}
 
-	public static function executeAssembunny(input:String, keypad:Int):Registers {
-		var registers:Registers = [
-			"a" => keypad,
-			"b" => 0,
-			"c" => 0,
-			"d" => 0
-		];
+	public static function executeAssembunny(input:String, keypad:Int, ?out:Int->Bool):Registers {
+		var registers:Registers = ["a" => keypad, "b" => 0, "c" => 0, "d" => 0];
 		var instructions = parseInstructions(input);
 		var i = 0;
 		function read(value:Value):Int {
@@ -65,7 +61,15 @@ class Day23 {
 							case Decrement(register): Increment(register);
 							case JumpNotZero(register, offset): Copy(register, offset);
 							case Toggle(register): Increment(register);
+							case _: throw "unsupported toggle";
 						}
+					}
+				case Out(value):
+					if (out == null) {
+						throw "no output connected";
+					}
+					if (!out(read(value))) {
+						return registers;
 					}
 			}
 			i++;
@@ -80,6 +84,7 @@ private enum Instruction {
 	Decrement(register:Register);
 	JumpNotZero(value:Value, offset:Value);
 	Toggle(register:Register);
+	Out(value:Value);
 }
 
 private enum Value {
@@ -88,5 +93,4 @@ private enum Value {
 }
 
 private abstract Register(String) from String {}
-
 private typedef Registers = Map<Register, Int>;
